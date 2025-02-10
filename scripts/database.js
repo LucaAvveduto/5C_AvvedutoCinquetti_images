@@ -6,7 +6,7 @@ conf.ssl.ca = fs.readFileSync(__dirname + '/ca.pem');
 
 export const DBComponent = () => {
   const connection = mysql.createConnection(conf);
-  
+
   const executeQuery = (sql) => {
     return new Promise((resolve, reject) => {
       connection.query(sql, function (err, result) {
@@ -28,7 +28,7 @@ export const DBComponent = () => {
           completed BOOLEAN ) 
        `);
   };
-  createTable();
+  (async () => {createTable()})();
 
   return {
     insert: async (todo) => {

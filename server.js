@@ -13,15 +13,15 @@ app.use(
 app.use("/", express.static(path.join(__dirname, "public")));
 
 
-app.post("/todo/add", async(req, res) => {
+app.post("/img/add", async(req, res) => {
   res.json({ result: "Ok" });
 });
 
-app.get("/todo", async(req, res) => {
+app.get("/img", async(req, res) => {
   res.json({ todos: todos });
 });
 
-app.delete("/todo/:id", async(req, res) => {
+app.delete("/img/:id", async(req, res) => {
   res.json({ result: "Ok" });
 });
 
