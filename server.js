@@ -1,8 +1,12 @@
+const db = require("./scripts/database");
 const express = require("express");
 const bodyParser = require("body-parser");
 const path = require("path");
 const http = require("http");
 const app = express();
+const fs = require('fs');
+const conf = JSON.parse(fs.readFileSync('conf.json'));
+conf.ssl.ca = fs.readFileSync(__dirname + '/ca.pem');
 
 app.use(bodyParser.json());
 app.use(
@@ -27,5 +31,5 @@ app.delete("/img/:id", async(req, res) => {
 
 const server = http.createServer(app);
 server.listen(80, () => {
-  console.log("- server running");
+  console.log("Server running on port 80");
 });

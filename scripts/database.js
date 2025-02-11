@@ -1,10 +1,6 @@
-
-const fs = require('fs');
 const mysql = require("mysql2");
-const conf = JSON.parse(fs.readFileSync('conf.json'));
-conf.ssl.ca = fs.readFileSync(__dirname + '/ca.pem');
 
-export const DBComponent = () => {
+module.exports = DBComponent = (conf) => {
   const connection = mysql.createConnection(conf);
 
   const executeQuery = (sql) => {
@@ -22,31 +18,29 @@ export const DBComponent = () => {
 
   const createTable = async () => {
     return await executeQuery(`
-    CREATE TABLE IF NOT EXISTS todo
+    CREATE TABLE IF NOT EXISTS images
        ( id INT PRIMARY KEY AUTO_INCREMENT, 
-          name VARCHAR(255) NOT NULL, 
-          completed BOOLEAN ) 
+          url VARCHAR(255) NOT NULL
+       ); 
        `);
   };
   (async () => {createTable()})();
 
   return {
-    insert: async (todo) => {
-      const template = `INSERT INTO todo (name, completed) VALUES ('$NAME', '$COMPLETED')`;
-      let sql = template.replace("$NAME", todo.name);
-      sql = sql.replace("$COMPLETED", todo.completed ? 1 : 0);
+    insert: async (img) => {
+      const template = `INSERT INTO images (name) VALUES ('$NAME')`;
+      let sql = template.replace("$NAME", img.name);
       return await executeQuery(sql);
     },
 
     select: async () => {
-      const sql = `SELECT id, name, completed FROM todo`;
+      const sql = `SELECT id, url FROM images`;
       return await executeQuery(sql);
     },
 
-    del: async (todo) => {
-      const query = "DELETE FROM todo WHERE id=$ID";
-      console.log(todo);
-      let sql = query.replace("$ID", todo.id);
+    del: async (img) => {
+      const query = "DELETE FROM images WHERE id=$ID";
+      let sql = query.replace("$ID", img.id);
       return await executeQuery(sql);
     },
   };
