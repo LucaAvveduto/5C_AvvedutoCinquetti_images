@@ -2,75 +2,27 @@ export const generateForm = (parentElement, pubsub) => {
     let onEdit;
     const formObject = {
         render : function() {
+            /*
+            !-SOSTITUIRE L'HTML, INSERIRCI INSERIMENTO IMMAGINI
+            */
             let html = 
             `<form class="container-fluid">
                 <div class="row md-row">
-                    <div class="col">
-                        <input type="text" class="form-control" placeholder="Title" id="workTitleInput">
-                    </div>
-                    <div class="col">
-                        <textarea class="form-control" rows="8"
-                            placeholder="Text" id="textInput"></textarea>
-                    </div>
-                    <div class="col">
-                        <input type="text" class="form-control"
-                            placeholder="Main image link" id="playMainLink">
-                    </div>
-                </div>
-                <div class="row md-row">
-                    <div class="col">
-                        <input type="text" class="form-control"
-                            placeholder="Location" id="playLocation">
-                    </div>
-                    <div class="col">
-                        <textarea class="form-control" rows="4"
-                            placeholder="Main characters"
-                            id="playCharacters"></textarea>
-                    </div>
-                    <div class="col">
-                        <input type="text" class="form-control"
-                            placeholder="Second image link"
-                            id="playSecondLink">
-                    </div>
-                </div>
-                <div class="row md-row">
-                    <div class="col">
-                        <input type="text" class="form-control"
-                            placeholder="Pubblication year"
-                            id="playPubblicationYear">
-                    </div>
-                    <div class="col">
-                        <input type="text" class="form-control"
-                            placeholder="Era" id="playEra">
-                    </div>
-                    <div class="col">
-                        <input type="text" class="form-control"
-                            placeholder="Third image link"
-                            id="playThirdLink">
+                    <div>
+                    <button type="button" class="btn btn-danger clearForm" data-bs-dismiss="modal"><i class="fa-solid fa-ban"></i> Cancel</button>
+                    <button type="button" class="btn btn-dark clearForm" data-bs-dismiss="modal" id="submitButton"><i class="fa-solid fa-floppy-disk"></i> Save</button>
                     </div>
                     <div id="resultLabel" class="form-text text-danger text-center"></div>
                 </div>
             </form>
                             ` ;
             parentElement.innerHTML = html ;
-            document.getElementById("adminFormTitle").innerText = "Add article";
-
-            let workTitleInput = document.getElementById("workTitleInput") ;
-            let textInput = document.getElementById("textInput") ;
-            let playMainLink = document.getElementById("playMainLink") ;
-            let playLocation = document.getElementById("playLocation") ;
-            let playCharacters = document.getElementById("playCharacters") ;
-            let playSecondLink = document.getElementById("playSecondLink") ;
-            let playPubblicationYear = document.getElementById("playPubblicationYear") ;
-            let playEra = document.getElementById("playEra") ;
-            let playThirdLink = document.getElementById("playThirdLink") ;
-            let resultLabel = document.getElementById("resultLabel");
-            let newImages = [] ;
+            document.getElementById("FormTitle").innerText = "Add image";
 
             document.querySelectorAll(".clearForm").forEach(b => {
                 b.onclick = () => {
                     if (b.id === "submitButton") {
-                        if (workTitleInput.value && textInput.value && playMainLink.value && playSecondLink.value && playThirdLink.value && playLocation.value && playCharacters.value && playPubblicationYear.value && playEra.value) {
+                        if (true) { //aggiungi condizione per quando è presente immagine 
                             document.getElementById("adminFormTitle").innerText = "Add article";
 
                             if (playMainLink.value) newImages.push(playMainLink.value)
@@ -157,4 +109,52 @@ export const generateForm = (parentElement, pubsub) => {
 
 
 
+/*   CODICE X INSERIMENTO IMMAGINI NEL FORM
+const renderList = async() => {
+    const link = document.querySelector("#link");
+    const files = await fetch("/list");
+    const images = await files.json();
+    const urls = Array.from(images);
+    const template = `<li><a href='%URL' target="_blank">%URL</a></li>`;
+    let html = "<ul>"
+    html += urls.map((e) => {
+      return template.replaceAll("%URL",e);
+    }).join("");
+    html += "</ul>";
+    link.innerHTML = html;
+}
 
+(async () => {
+    const inputFile = document.querySelector('#file');
+    const button = document.querySelector("#button");
+    const errorDiv = document.querySelector("#error");
+  
+    handleSubmit = async (event) => {
+      const formData = new FormData();
+      if (!inputFile.files[0]) {
+        errorDiv.innerHTML = "<p>Insert a file</p>";
+        return;
+      }
+      formData.append("file", inputFile.files[0]);
+      const body = formData;
+      const fetchOptions = {
+        method: 'post',
+        body: body
+      };
+      try {
+        const res = await fetch("/upload", fetchOptions);
+        const data = await res.json();
+        await renderList();
+      } catch (e) {
+        console.log(e);
+      }
+    }
+    button.onclick = handleSubmit;
+  })();
+
+  renderList().then(() => {
+    setInterval(async() => {
+        await renderList();
+    },30000)
+  }).catch(console.error)
+*/
