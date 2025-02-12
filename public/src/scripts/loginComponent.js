@@ -1,15 +1,14 @@
 export const generateLoginComponent = (parentElement,pubsub) => {
-    let token;
     let isLogged;
     let privateClass;
-
+    let conf;
     const login = (username, password) => {
         return new Promise((resolve, reject) => {
-            fetch("https://ws.cipiaceinfo.it/credential/login", {
+            fetch(conf[URL], {
                 method: "POST",
                 headers: {
                     "content-type": "application/json",
-                    "key": token
+                    "key": conf["TOKEN"]
                 },
                 body: JSON.stringify({
                     username: username,
@@ -23,8 +22,8 @@ export const generateLoginComponent = (parentElement,pubsub) => {
     };
 
     return {
-        build: (inputToken, inputPrivateClass) => {
-            token = inputToken;
+        build: (config,inputPrivateClass) => {
+            conf = config;
             isLogged = sessionStorage.getItem("logged") || false;
             privateClass = inputPrivateClass;
 
@@ -42,37 +41,16 @@ export const generateLoginComponent = (parentElement,pubsub) => {
             }
         },
         renderForm: () => {
-            const html = `
-                <div class="page-header theme-bg-dark py-5 text-center position-relative">
-                <div class="theme-bg-shapes-right"></div>
-                <div class="theme-bg-shapes-left"></div>
-                <div class="container">
-                    <h1 class="page-heading single-col-max mx-auto">Login</h1>
-                    <div class="page-intro single-col-max mx-auto">Log in to access administration section.</div>
-                </div>
-                </div><!--//page-header-->
-                <div class="page-content">
-                    <div class="container text-center py-5">
-                        <div class="row py-4">
-                            <div class="col">
-                                <input type="text" class="form-control" id="inputUsername" placeholder="Username">
-                            </div>
-                        </div>
-                        <div class="row py-4">
-                            <div class="col">
-                                <input type="password" class="form-control" id="inputPassword" placeholder="Password">
-                            </div>
-                        </div>
-                        <div class="row py-4">
-                            <div class="col">
-                                <button type="button" class="btn btn-dark" id="loginButton"><i class="fa-solid fa-right-to-bracket"></i> LOGIN</button>
-                            </div>
-                        </div>
-                        <div class="row py-4">
-                            <p id="loginResult"></p>
-                        </div>
-                    </div>
-            </div>`;
+            const types = ["text","password"];
+            const labels = ["username","password"];
+            let html = "<div class='mb-3'>";
+            for(let i = 0; i < types.length; i++) {
+                html += `
+                    <label for="`+ labels[i] +`" class="form-label">`+ labels[i] +`</label>
+                    <input class="form-control" type`+ types[i] +` id="`+ labels[i] +`">
+                `;
+            }
+            html += "</div>"
             parentElement.innerHTML = html;
 
             document.getElementById("loginButton").onclick = () => {
