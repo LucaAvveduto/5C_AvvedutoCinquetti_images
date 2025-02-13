@@ -9,6 +9,8 @@ export const generatePubSub = () => {
             events[eventName].push(callback);
         },
         publish: (eventName) => {
+            console.log(eventName)
+            console.log(events)
             events[eventName].forEach(callback => callback());
         },
     };
