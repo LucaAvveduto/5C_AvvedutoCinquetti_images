@@ -3,6 +3,7 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const path = require("path");
 const http = require("http");
+const multer  = require('multer');
 const app = express();
 const fs = require('fs');
 const conf = JSON.parse(fs.readFileSync('conf.json'));
@@ -17,11 +18,23 @@ app.use(
 );
 app.use("/", express.static(path.join(__dirname, "public")));
 
+var storage = multer.diskStorage({
+  destination: function (req, file, callback) {
+      callback(null, path.join(__dirname, "files"));
+  },
+  filename: function (req, file, callback) {
+      callback(null, file.originalname);
+  }
+});
+const upload = multer({ storage: storage}).single('file');
+
 
 app.post("/img/add", async(req, res) => {
-  const img = req.body.img;
-  await insert(img);
-  res.json({ result: "Ok" });
+  await upload (req, res, async(err) => {
+    const img = req.body.img;
+    await insert(img);
+    res.json({ result: "Ok" });
+  });
 });
 
 app.get("/img", async(req, res) => {

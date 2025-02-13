@@ -9,4 +9,15 @@ html {
     justify-content: end !important;
 }
 
-div.col>input[type="file"]{width: 60%;}
+#loginResult {
+    color: red;
+    font-weight: bold;
+}
+
+div.col>input[type="file"]{
+    width: 60%;
+}
+
+#login-form {
+    text-align: start !important;
+}
