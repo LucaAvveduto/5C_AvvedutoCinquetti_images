@@ -9,7 +9,7 @@ html {
     justify-content: end !important;
 }
 
-p#loginResult {
+#loginResult {
     color: red;
     font-weight: bold;
 }
@@ -46,4 +46,9 @@ a.actived {
 #login-title {
     margin-top: 2.5%;
     margin-bottom: 5%;
+}
+
+.sticky-on-top {
+    position: sticky;
+    top: 0 !important;
 }

@@ -106,11 +106,11 @@ export const generateLoginComponent = (parentElement,pubsub) => {
                         }
                     })
                     .catch(err => {
-                        console.log(err) ;
+                        loginResult.innerText = "Server side login error."
                     });
                 }
                 else {
-                    loginResult.innerText = "Not all forms compiled";
+                    loginResult.innerText = "Not all fields are compiled.";
                 }
             };
         },
