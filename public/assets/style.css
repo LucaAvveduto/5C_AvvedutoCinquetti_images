@@ -8,3 +8,5 @@ html {
     display: flex;
     justify-content: end !important;
 }
+
+div.col>input[type="file"]{width: 60%;}

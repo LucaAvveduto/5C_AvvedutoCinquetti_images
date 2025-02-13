@@ -10,7 +10,7 @@ export const generateForm = (parentElement, pubsub) => {
             <form class="container-fluid">
                 <div class="row md-row">
                     <div class="col">
-                        <input type="text" class="form-control" placeholder="image" id="imageInput">
+                        <input type="file" class="form-control" placeholder="image" id="imageInput">
                     </div>
                 </div>
                 <div class="row md-row">
@@ -19,15 +19,14 @@ export const generateForm = (parentElement, pubsub) => {
             </form>
                             ` ;
             parentElement.innerHTML = html ;
-            document.getElementById("formTitle").innerText = "Add image";
+            document.getElementById("formTitle").innerHTML = "Add image";
             const inputFile = document.querySelector('#file');
 
             document.querySelectorAll(".clearForm").forEach(b => {
                 b.onclick = () => {
                     if (b.id === "submitButton") {
-                        if (true) { //aggiungi condizione per quando è presente immagine 
+                        if (document.getElementById("imageInput").value) { //aggiungi condizione per quando è presente immagine 
                             document.getElementById("fomeTitle").innerText = "Add image";
-
                             pubsub.publish("form-submit");
                         }
                         else {
@@ -84,7 +83,7 @@ const renderList = async() => {
 (async () => {
     const inputFile = document.querySelector('#file');
     const button = document.querySelector("#button");
-    const errorDiv = document.querySelector("#error");x
+    const errorDiv = document.querySelector("#error");
   
     handleSubmit = async (event) => {
       const formData = new FormData();
@@ -98,8 +97,8 @@ const renderList = async() => {
         method: 'post',
         body: body
       };
-      try {
-        const res = await fetch("/upload", fetchOptions);
+      try { mettere la fetch giusta, fare callback con immagine da dare al fetchComponent
+        const res = await fetch("/upload", fetchOptions); 
         const data = await res.json();
         await renderList();
       } catch (e) {
