@@ -45,6 +45,12 @@ export const generateLoginComponent = (parentElement,pubsub) => {
             const labels = ["username","password"];
             let html = `
                         <div class="container text-center">
+                         <div class="row" id="login-title">
+                            <div class="line"></div>
+                            <h2>Benvenuto nella sezione di login!</h2>
+                            <h4>Effettua il login per passare alla modalità amministratore.</h4>
+                            <div class="line"></div>
+                        </div>
                         <div class='mb-3'>
             `;
             for(let i = 0; i < types.length; i++) {
@@ -52,7 +58,7 @@ export const generateLoginComponent = (parentElement,pubsub) => {
                 <div class="row">
                     <div class="col" id="login-form">
                         <label for="`+ labels[i] +`" class="form-label">`+ labels[i] +`</label>
-                        <input class="form-control" type`+ types[i] +` id="`+ labels[i] +`">
+                        <input class="form-control" type=`+ types[i] +` id="`+ labels[i] +`">
                     </div>
                 </div>
                 `;

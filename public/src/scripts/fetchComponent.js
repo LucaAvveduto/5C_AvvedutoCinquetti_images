@@ -16,16 +16,9 @@ export const generateFetchComponent = () => {
                 .catch(err => reject(err.result));
             });
         },
-        getImages: () => {
-            return new Promise((resolve, reject) => {
-                fetch("/img")
-                .then(r => r.json())
-                .then(data => {
-                    let dict = JSON.parse(data.result);
-                    resolve(dict);
-                })
-                .catch(err => reject(err.result));
-            })
+        getImages: async() => {
+            const response = await fetch("/img").catch(console.error);
+            return await response.json();
         },
         deleteImage: async(img) => {
             const response = await fetch("/img/"+img,{

@@ -9,15 +9,41 @@ html {
     justify-content: end !important;
 }
 
-#loginResult {
+p#loginResult {
     color: red;
     font-weight: bold;
 }
 
-div.col>input[type="file"]{
-    width: 60%;
+div.col > input[type="file"]{
+    width: 70%;
 }
 
 #login-form {
-    text-align: start !important;
+    text-align: start;
+}
+
+.navbar-brand > img {
+    width: 30px;
+    height: auto;
+    object-fit: cover;
+}
+
+.nav-link {
+    font-size: x-large;
+}
+
+a.actived {
+    color: black;
+}
+
+.line {
+    content: "";
+    width: 0;
+    width: 100%;
+    border: 1px solid black;
+}
+
+#login-title {
+    margin-top: 2.5%;
+    margin-bottom: 5%;
 }

@@ -11,13 +11,20 @@ export const generateNavbar = (parentElement) => {
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
-                    <a class="navbar-brand" href="#home">Navbar</a>
+                    <a class="navbar-brand" href="#home"><img src="./assets/logo.png"></a>
                         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                             <div class="navbar-nav">
             `;
-            html += data.map((e) => '<a class="nav-link" href="#' + e + '">' + e + '</a>').join("");
+            html += data.map((e) => `<a class="nav-link" href="#${e}">${e}</a>`).join("");
             html += "</div></div></div></nav>";
             parentElement.innerHTML = html;
+
+            window.addEventListener('popstate', () => {
+                document.querySelectorAll(".actived").forEach((e) => e.classList.remove("actived"));
+                const url = new URL(location.href);
+                Array.from(document.querySelectorAll(`a[href="${url.hash}"]`)).pop().classList.add("actived");
+                console.log(document.querySelector(`a[href="${url.hash}"]`));
+            })
         }
     }
 }
