@@ -1,38 +1,34 @@
 export const generateAdminTable = (parentElement,pubsub) => {
-    let images = []
-    let callback;
+    let images = [];
     const tableObject = {
-        build: function(imagesInput,callbackInput) {
-            images=imagesInput;
-            callback=callbackInput
+        build: function(imagesInput) {
+            images = imagesInput;
+            pubsub.subscribe("img-change", (imgs) => {
+                images = imgs;
+                this.render();
+            });
         },
         render: function() {
             let html = '<table class="table table-focus table-striped"><thead class="sticky-on-top">';
             
             html += images.map((image) => 
                 `<tr><td><img src="${image.url}" class="d-block" alt="${image.url}"></td>`+
-                '<td><a href="#article-' + image + '"id="' + image + '" class="imageLink">' + e + ' <i class="fa-solid fa-arrow-up-right-from-square"></i></a></td><td> <button type="button" id="delete-' + e + '" class="btn btn-danger deleteButton"><i class="fa-solid fa-trash"></i> Delete</button></td></tr>'
+                `<td><p class="img-id">${image.id}</p></td>` +
+                `<td><button type="button" id="${image.id}" class="btn btn-danger deleteButton">Delete</button></td></tr>`
             ).join("");
-
-
-            html += "</tbody>";
-            html += '<tfoot><tr><td><button type="button" class="btn btn-info addButton"><i class="fa-solid fa-trash"></i> add Image</button></td></tr></tfoot></table>'
+            html += "</tbody></table>";
             parentElement.innerHTML = html;
 
 
             document.querySelectorAll(".deleteButton").forEach(b => {
                 b.onclick = () => {
-                    const playTitle = b.id.replace("delete-", "");
-                    
-                    delete images[playTitle];
-                    
-                    //pubsub.publish("el-deleted", data);
+                    pubsub.publish("el-to-delete", b.id);
                 };
             });
 
-            document.querySelectorAll(".addButton").forEach(b => {
-                b.onclick = callback();
-            });
+            document.querySelector("#addButton").onclick = () => {
+                pubsub.publish("open-modal");
+            }
         },
         setImages: function(inputImages) {
             images = inputImages;

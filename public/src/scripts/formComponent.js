@@ -1,7 +1,9 @@
 export const generateForm = (parentElement, pubsub) => {    
     const formObject = {
-        build : function(callBackInput) {
-            callBack=callBackInput
+        build: function() {
+            pubsub.subscribe("open-modal",() => {
+                this.render();
+            });
         },
         render : function() {
             let html = 

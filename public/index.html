@@ -9,7 +9,7 @@
     <title>Image slider</title>
 </head>
 <body>
-    <div id="nav-container"></div>
+    <div id="nav-container" class=".sticky-on-top"></div>
     <div id="pages">
         <div id="home" class="page">
             <div class="container text-center">
@@ -27,12 +27,20 @@
             <div id="loginContainer"></div>
             <div class="private">
                 <div class="container">
-                    <h1>Administration</h1>
-                    <div>Manage all the images.</div>	    
+                    <div class="row">
+                        <div class="col">
+                            <h1>Administration</h1>
+                            <div>Manage all the images.</div>
+                        </div>
+                        <div class="col">
+                            <div id="cr-button">
+                                <button type="button" class="btn btn-primary" id="addButton">ADD</button>
+                            </div>
+                        </div>
+                    </div>	    
                 </div>
             </div>
             <div id="table" class="private"></div>
-            <div id="table"></div>
         </div>
 
         <div class="modal fade" id="modalForm" tabindex="-1" aria-hidden="true">

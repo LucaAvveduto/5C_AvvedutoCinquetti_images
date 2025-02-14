@@ -58,7 +58,7 @@ a.actived {
 }
 
 .sticky-on-top {
-    position: sticky;
+    position: sticky !important;
     top: 0 !important;
 }
 
@@ -96,4 +96,11 @@ a.actived {
     place-items: center;
     height: 100%;
     z-index: 1000;
+}
+
+#cr-button {
+    height: 100%;
+    display: flex;
+    justify-content: end;
+    place-items: center;
 }

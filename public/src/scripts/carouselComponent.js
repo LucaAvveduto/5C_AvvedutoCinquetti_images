@@ -3,7 +3,7 @@ export const generateCarouselComponent = function(parentElement,pubSub) {
     const fncts = {
         build: function(elements) {
             data = elements;
-            pubSub.subscribe("new-image", (imgs) => {
+            pubSub.subscribe("img-change", (imgs) => {
                 data = imgs;
                 this.render();
             });
