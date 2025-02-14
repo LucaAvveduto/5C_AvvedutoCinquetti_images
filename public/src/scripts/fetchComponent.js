@@ -1,20 +1,11 @@
 export const generateFetchComponent = () => {
     return {
-        uploadImage: (data) => {
-            return new Promise((resolve, reject) => {
-                fetch("/img/add", {
-                    method: "POST",
-                    headers: {
-                        "content-type": "application/json",
-                    },
-                    body: JSON.stringify({
-                        value: JSON.stringify(data)
-                    })
-                })
-                .then(r => r.json())
-                .then(data => resolve(data.result))
-                .catch(err => reject(err.result));
-            });
+        uploadImage: async(data) => {
+            const response = await fetch("/img/add", {
+                method: "POST",
+                body: data
+            }).catch(console.error);
+            return response.json();
         },
         getImages: async() => {
             const response = await fetch("/img").catch(console.error);

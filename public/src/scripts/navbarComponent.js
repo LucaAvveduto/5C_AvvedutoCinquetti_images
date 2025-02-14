@@ -18,10 +18,13 @@ export const generateNavbar = (parentElement) => {
             html += data.map((e) => `<a class="nav-link" href="#${e}">${e}</a>`).join("");
             html += "</div></div></div></nav>";
             parentElement.innerHTML = html;
+ 
+            Array.from(document.querySelectorAll(`a[href="#home"]`)).pop().classList.add("actived");
 
             window.addEventListener('popstate', () => {
                 document.querySelectorAll(".actived").forEach((e) => e.classList.remove("actived"));
                 const url = new URL(location.href);
+                if(!url.hash) Array.from(document.querySelectorAll(`a[href="home"]`)).pop().classList.add("actived");
                 Array.from(document.querySelectorAll(`a[href="${url.hash}"]`)).pop().classList.add("actived");
                 console.log(document.querySelector(`a[href="${url.hash}"]`));
             })

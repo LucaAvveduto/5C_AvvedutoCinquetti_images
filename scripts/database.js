@@ -30,7 +30,8 @@ module.exports = DBComponent = (conf) => {
   return {
     insert: async (img) => {
       const template = `INSERT INTO images (url) VALUES ('$URL')`;
-      let sql = template.replace("$URL", img.url);
+      console.log(img)
+      let sql = template.replace("$URL",img);
       return await executeQuery(sql);
     },
 

@@ -20,22 +20,19 @@ app.use("/", express.static(path.join(__dirname, "public")));
 
 var storage = multer.diskStorage({
   destination: function (req, file, callback) {
-      callback(null, path.join(__dirname, "files"));
+      callback(null, path.join(__dirname, "images"));
   },
   filename: function (req, file, callback) {
       callback(null, file.originalname);
   }
 });
-const upload = multer({ storage: storage}).single('file');
 
 
-app.post("/img/add", async(req, res) => {
-  await upload (req, res, async(err) => {
-    const img = req.body.img;
-    await insert(img);
-    res.json({ result: "Ok" });
+app.post("/img/add", multer({ storage: storage}).single('file'), async (req, res) => {
+  await db.insert("./files/" + req.file.originalname);
+  res.json({result: "ok" });
   });
-});
+  
 
 app.get("/img", async(req, res) => {
   const imgs = await db.select();
