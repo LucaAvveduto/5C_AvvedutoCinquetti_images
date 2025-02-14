@@ -1,6 +1,4 @@
 export const generateForm = (parentElement, pubsub) => {    
-    let onEdit;
-    let callBack
     const formObject = {
         build : function(callBackInput) {
             callBack=callBackInput
@@ -43,31 +41,21 @@ export const generateForm = (parentElement, pubsub) => {
                         formData.append("file", imageInput.files[0]);
 
                         try { 
-                            callBack(formData)
-                            //pubsub.publish("form-submit");
+                            pubsub.publish("form-submit",formData);
                         } catch (e) {
                             console.log(e);
                         }
                     }
                     else {
-                        onEdit = false;
                         document.getElementById("formTitle").innerHTML = "Add image";
                         resultLabel.innerText = "";
                     }
                 };
             })
         },
-        clear: () => {
-            onEdit = false;
-            document.getElementById("formTitle").innerText = "Add Image";
-            document.getElementById("resultLabel").innerText = "" ;
-        },
         setError: (error) => {
             document.getElementById("resultLabel").innerText = error;
         },
-        getEdit: () => {
-            return onEdit;
-        }
     }
     return formObject;
 };

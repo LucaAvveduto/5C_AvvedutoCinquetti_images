@@ -1,10 +1,14 @@
-export const generateCarouselComponent = (parentElement) => {
+export const generateCarouselComponent = function(parentElement,pubSub) {
     let data;
-    return {
-        build: (elements) => {
+    const fncts = {
+        build: function(elements) {
             data = elements;
+            pubSub.subscribe("new-image", (imgs) => {
+                data = imgs;
+                this.render();
+            });
         },
-        render: () => {
+        render: function() {
             let html = `
             <div id="carouselExample" class="carousel carousel-dark slide">
                 <div class="carousel-inner">
@@ -24,8 +28,9 @@ export const generateCarouselComponent = (parentElement) => {
                         <span class="visually-hidden">Next</span>
                     </button>
                 </div>`;
-                console.log(data)
+                console.log(html)
             parentElement.innerHTML = html;
         }
     }
+    return fncts;
 }
