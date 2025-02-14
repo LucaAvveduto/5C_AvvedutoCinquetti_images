@@ -17,6 +17,7 @@ app.use(
   })
 );
 app.use("/", express.static(path.join(__dirname, "public")));
+app.use("/images",express.static(path.join(__dirname,"images")));
 
 var storage = multer.diskStorage({
   destination: function (req, file, callback) {
@@ -29,7 +30,7 @@ var storage = multer.diskStorage({
 
 
 app.post("/img/add", multer({ storage: storage}).single('file'), async (req, res) => {
-  await db.insert("./files/" + req.file.originalname);
+  await db.insert("/images/" + req.file.originalname);
   res.json({result: "ok" });
   });
   

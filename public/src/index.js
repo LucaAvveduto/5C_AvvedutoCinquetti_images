@@ -27,17 +27,14 @@ const conf = await response.json();
 
 const data = await fetchComponent.getImages();
 
-carouselComponent.build(data.imgs);
+carouselComponent.build(data);
 carouselComponent.render();
-
 
 
 form.build(async(file) => {
     console.log(file);
     const response = await fetchComponent.uploadImage(file);
 });
-form.render();
-modal.show();
 
 navComponent.build(["home","admin"]);
 navComponent.render();

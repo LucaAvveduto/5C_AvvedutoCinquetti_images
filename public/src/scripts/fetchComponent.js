@@ -9,7 +9,8 @@ export const generateFetchComponent = () => {
         },
         getImages: async() => {
             const response = await fetch("/img").catch(console.error);
-            return await response.json();
+            const json = await response.json();
+            return json.imgs;
         },
         deleteImage: async(img) => {
             const response = await fetch("/img/"+img,{

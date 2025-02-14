@@ -3,6 +3,7 @@ html {
     height: 100%;
 }
 
+
 .navbar-nav {
     width: 100%;
     display: flex;
@@ -51,4 +52,25 @@ a.actived {
 .sticky-on-top {
     position: sticky;
     top: 0 !important;
+}
+
+.col:has(#carousel){
+    display: flex;
+    justify-content: center;
+    place-items: center;
+}
+
+#carousel {
+    margin-top: 5%;
+}
+
+#carouselExample {
+    width: 70vw;
+    height: 45vh;
+}
+
+.carousel-inner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
