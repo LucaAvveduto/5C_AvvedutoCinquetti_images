@@ -29,13 +29,15 @@ export const generateForm = (parentElement, pubsub) => {
                         const formData = new FormData();
                         let realImage = false;
                         const path = imageInput.value;
+                        let splitPath = path.split("\\").pop().split(".")
+                        console.log(splitPath)
                         for (const e of extensions) {
-                            if (path.includes(e)) {
+                            if (path.endsWith(e)) {
                                 realImage = true;
                                 break;
                             }
-                        }                        
-                        if (!imageInput.files[0] || !realImage) {
+                        }                     
+                        if (!imageInput.files[0] || !realImage || !splitPath[0]) {
                             this.setError("<p>Insert an image</p>");
                             console.log("errore files")
                             return;
