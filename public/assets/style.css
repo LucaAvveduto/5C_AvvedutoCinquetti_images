@@ -62,6 +62,7 @@ a.actived {
 }
 
 .col:has(#carousel){
+    height: 60vh !important;
     display: flex;
     justify-content: center;
     place-items: center;

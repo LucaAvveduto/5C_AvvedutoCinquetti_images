@@ -43,23 +43,23 @@ admTabComponent.render();
 pubSub.subscribe("open-modal", () => modal.show());
 
 pubSub.subscribe("el-to-delete", async(element) => {
-    admTabComponent.classList.add("d-none");
+    admTabContainer.classList.add("d-none");
     spinner.classList.remove("d-none");
     await fetchComponent.deleteImage(element);
     const data = await fetchComponent.getImages();
     pubSub.publish("img-change",data);
     spinner.classList.add("d-none");
-    carouselContainer.classList.remove("d-none");
+    admTabContainer.classList.remove("d-none");
 });
 
 pubSub.subscribe("form-submit", async(file) => {
-    carouselContainer.classList.add("d-none");
+    admTabContainer.classList.add("d-none");
     spinner.classList.remove("d-none");
     await fetchComponent.uploadImage(file);
     const data = await fetchComponent.getImages();
     pubSub.publish("img-change",data);
     spinner.classList.add("d-none");
-    carouselContainer.classList.remove("d-none");
+    admTabContainer.classList.remove("d-none");
 });
 
 navComponent.build(["home","admin"]);
