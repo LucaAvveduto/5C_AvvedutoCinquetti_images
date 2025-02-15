@@ -1,6 +1,5 @@
 :root {
     --background: #edf2f4;
-    --carousel-bg: #d5dee1;
 }
 
 html {
@@ -70,24 +69,25 @@ a.actived {
 
 #carousel {
     margin-top: 5%;
-    background-color: var(--carousel-bg);
-    display: flex;
-    justify-content: center !important;
-    align-items: center !important;
-
 }
 
 #carouselExample {
-    width: 90vw;
-    height: 50vh;
-    display: flex;
-    place-items: center !important;
+    height: 40vh; 
 }
 
 .carousel-inner {
-    display: flex;
-    justify-content: center !important;
-    align-items: center !important;
+    width: 80vw;
+    height: 100%;
+}
+
+.carousel-item {
+    height: 100%;
+}
+
+.carousel-item img {
+    height: 80%;
+    width: auto;
+    object-fit: contain;
 }
 
 #spinner-container {

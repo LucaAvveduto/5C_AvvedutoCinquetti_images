@@ -15,7 +15,7 @@ export const generateCarouselComponent = function(parentElement,pubSub) {
             `;
             html += data.map((e, index) => 
                 `<div class="carousel-item ${index === 0 ? 'active' : ''}">
-                    <img src="${e.url}" class="d-block" alt="${e.url}">
+                    <img src="${e.url}" class="d-block w-100" alt="${e.url}">
                 </div>`
             ).join("");            
             html += `</div>
