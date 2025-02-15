@@ -8,9 +8,6 @@ const show = (element) => {
 
 export const generateNavigator = (parentElement) => {
    const pages = Array.from(parentElement.querySelectorAll(".page"));
-   /*
-   !-RINOMINARE PER FARE RIFERIMENTO A SITO IMMAGINI E NON ARTICLE
-   */
    const render = () => {
       const url = new URL(document.location.href);
       const pageName = url.hash.replace("#", "");

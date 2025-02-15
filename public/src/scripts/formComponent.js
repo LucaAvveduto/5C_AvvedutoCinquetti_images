@@ -38,7 +38,7 @@ export const generateForm = (parentElement, pubsub) => {
                             }
                         }                     
                         if (!imageInput.files[0] || !realImage || !splitPath[0]) {
-                            this.setError("<p>Insert an image</p>");
+                            this.setError("Insert an image");
                             console.log("errore files")
                             return;
                         }
