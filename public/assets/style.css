@@ -105,3 +105,25 @@ a.actived {
     justify-content: end;
     place-items: center;
 }
+
+#table {
+    height: 70vh !important;
+    overflow-y: scroll !important;
+}
+
+#table > table > tbody > tr {
+    height: 5vh !important;
+}
+
+#table > table > tbody > tr > td > img{
+    width: 100% !important;
+    height: auto;
+    object-fit: cover;
+}
+#table > table > tbody > tr > td{
+    width: 33% !important;
+}
+
+.table-focus > tbody > tr:hover > td {
+    background-color: beige !important;
+}

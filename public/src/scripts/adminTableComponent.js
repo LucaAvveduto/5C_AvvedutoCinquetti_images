@@ -9,15 +9,15 @@ export const generateAdminTable = (parentElement,pubsub) => {
             });
         },
         render: function() {
-            let html = '<table class="table table-focus table-striped"><thead class="sticky-on-top">';
+            let html = '<table class="table table-focus table-striped"><tbody class="sticky-on-top">';
             
             html += images.map((image) => 
                 `<tr><td><img src="${image.url}" class="d-block" alt="${image.url}"></td>`+
-                `<td><p class="img-id">${image.id}</p></td>` +
-                `<td><button type="button" id="${image.id}" class="btn btn-danger deleteButton">Delete</button></td></tr>`
+                `<td class="text-center"><a href="${image.url}" target="_blank">${image.url}</a></td>` +
+                `<td class="text-center"><button type="button" id="${image.id}" class="btn btn-danger deleteButton">Delete</button></td></tr>`
             ).join("");
             html += "</tbody></table>";
-            parentElement.innerHTML = html;
+            parentElement.innerHTML= html;
 
 
             document.querySelectorAll(".deleteButton").forEach(b => {
