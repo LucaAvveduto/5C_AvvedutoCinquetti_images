@@ -106,9 +106,22 @@ a.actived {
     place-items: center;
 }
 
+.col:has(#table) {
+    display: flex;
+    justify-content: center;
+    place-items: center;
+}
+
 #table {
-    height: 70vh !important;
-    overflow-y: scroll !important;
+    margin-top: 5%;
+    height: 70vh;
+    width: 100%;
+    overflow-y: scroll;
+}
+
+#table > table {
+    width: 100%;
+    table-layout: fixed;
 }
 
 #table > table > tbody > tr {
@@ -116,14 +129,17 @@ a.actived {
 }
 
 #table > table > tbody > tr > td > img{
-    width: 100% !important;
+    max-width: 100%;
     height: auto;
     object-fit: cover;
-}
-#table > table > tbody > tr > td{
-    width: 33% !important;
 }
 
 .table-focus > tbody > tr:hover > td {
     background-color: beige !important;
+}
+
+@media (max-width: 768px) {
+    #table {
+        margin-top: 15%;
+    }
 }

@@ -14,7 +14,7 @@ export const generateAdminTable = (parentElement,pubsub) => {
             html += images.map((image) => 
                 `<tr><td><img src="${image.url}" class="d-block" alt="${image.url}"></td>`+
                 `<td class="text-center"><a href="${image.url}" target="_blank">${image.url}</a></td>` +
-                `<td class="text-center"><button type="button" id="${image.id}" class="btn btn-danger deleteButton">Delete</button></td></tr>`
+                `<td class="text-end"><button type="button" id="${image.id}" class="btn btn-danger deleteButton">Delete</button></td></tr>`
             ).join("");
             html += "</tbody></table>";
             parentElement.innerHTML= html;
