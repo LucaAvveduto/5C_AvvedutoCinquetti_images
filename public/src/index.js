@@ -67,3 +67,10 @@ navComponent.render();
 
 login.build(conf,"private");
 login.renderForm();
+
+setInterval(async ()=>{
+    spinner.classList.remove("d-none");
+    const data = await fetchComponent.getImages();
+    pubSub.publish("img-change",data);
+    spinner.classList.add("d-none");
+},10000)
